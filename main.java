@@ -14,7 +14,7 @@ public class main {
 
         // Create Animal List
         ArrayList<Animal> animalList = new ArrayList<>();
-        animalList.add(new Animal(1, "Lion", 5));
+        animalList.add(new Animal(1, "Panda", 5));
         animalList.add(new Animal(2, "Zebra", 3));
         animalList.add(new Animal(3, "Elephant", 10));
         animalList.add(new Animal(4, "Giraffe", 7));
@@ -26,7 +26,8 @@ public class main {
             System.out.println("1. View all animals");
             System.out.println("2. View an animal's feeding schedule");
             System.out.println("3. View an animal's medication schedule");
-            System.out.println("4. Exit");
+            System.out.println("4. Add a new animal");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
 
             // Handle user input
@@ -34,14 +35,14 @@ public class main {
             try {
                 choice = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("Invalid input! Please enter a number between 1 and 4.");
+                System.out.println("Invalid input! Please enter a number between 1 and 5.");
                 scanner.next(); // Clear invalid input
                 continue;
             }
 
             switch (choice) {
                 case 1: // View all animals
-                    System.out.println("\nAnimal List:");
+                    System.out.println("Animal List:");
                     for (Animal animal : animalList) {
                         System.out.println(animal);
                     }
@@ -77,14 +78,40 @@ public class main {
                     }
                     break;
 
-                case 4: // Exit the program
+                case 4: // add a new animal 
+                addNewAnimal(scanner,animalList);
+                break;
+
+                case 5: // Exit the program
                     System.out.println("Exiting program... Goodbye!");
                     scanner.close();
                     return;
 
                 default:
                     System.out.println("Invalid choice! Please select a valid option.");
+            
             }
         }
+    }
+    public static void addNewAnimal (Scanner scanner, ArrayList<Animal> animalList){
+        System.out.println ("Enter details of the new animal:");
+
+        //get animal id
+        System.out.print("Animal ID: ");
+        int animalId = scanner.nextInt();
+
+        //get animal Species
+        System.out.print("Species: ");
+        String species = scanner.next();
+
+        //get age
+        System.out.print("Age: ");
+        int age = scanner.nextInt();
+
+        // add new animal 
+        Animal newAnimal = new Animal(animalId, species, age);
+        animalList.add(newAnimal);
+
+        System.out.println("New animal added successfully: " + newAnimal);
     }
 }
